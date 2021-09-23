@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, FlatList, TouchableOpacity, Alert } from 'react-native';
 import { List, Divider } from 'react-native-paper';
 import firestore from '@react-native-firebase/firestore';
 import Loading from '../components/Loading';
@@ -55,9 +55,10 @@ export default function HomeScreen({ navigation }) {
         data={threads}
         keyExtractor={item => item._id}
         ItemSeparatorComponent={() => <Divider />}
-        renderItem={({ item }) => (
+        renderItem={({ item, index }) => (
           <TouchableOpacity
             onPress={() => navigation.navigate('Room', { thread: item })}
+            onLongPress={() => Alert.alert("12345")}
           >
             <List.Item
               title={item.name}
@@ -66,6 +67,7 @@ export default function HomeScreen({ navigation }) {
               titleStyle={styles.listTitle}
               descriptionStyle={styles.listDescription}
               descriptionNumberOfLines={1}
+              // style={ index%2==1?styles.backgroundEven:styles.backgroundOdd }
             />
           </TouchableOpacity>
         )}
@@ -80,9 +82,15 @@ const styles = StyleSheet.create({
     flex: 1
   },
   listTitle: {
-    fontSize: 22
+    fontSize: 22,
   },
   listDescription: {
     fontSize: 16
+  },
+  backgroundOdd: {
+    backgroundColor: '#ff8a50'
+  },
+  backgroundEven: {
+    backgroundColor: '#ffffff'
   }
 });

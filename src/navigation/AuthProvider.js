@@ -1,5 +1,6 @@
 import React, { createContext, useState } from 'react';
 import auth from '@react-native-firebase/auth';
+import firestore from '@react-native-firebase/firestore';
 
 /**
  * This provider is created
@@ -24,8 +25,14 @@ export const AuthProvider = ({ children }) => {
           }
         },
         register: async (email, password) => {
-          try {
-            await auth().createUserWithEmailAndPassword(email, password);
+          try { 
+            await auth().createUserWithEmailAndPassword(email, password).then((result) => {
+              firestore().collection('CHAT_USER').add({
+                uuid: result.user.uid,
+                email: email,
+                password: password
+              })
+            });
           } catch (e) {
             console.log(e);
           }

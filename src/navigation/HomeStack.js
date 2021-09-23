@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Alert } from 'react-native';
+import { Alert, View } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { IconButton } from 'react-native-paper';
 import HomeScreen from '../screens/HomeScreen';
@@ -21,11 +21,11 @@ function ChatApp() {
     <ChatAppStack.Navigator
       screenOptions={{
         headerStyle: {
-          backgroundColor: '#6646ee'
+          backgroundColor: '#ff5722'
         },
-        headerTintColor: '#ffffff',
+        headerTintColor: '#000000',
         headerTitleStyle: {
-          fontSize: 22
+          fontSize: 20
         },
       }}
     >
@@ -34,18 +34,32 @@ function ChatApp() {
         component={HomeScreen}
         options={({ navigation }) => ({
           headerRight: () => (
-            <IconButton
-              icon='message-plus'
-              size={28}
-              color='#ffffff'
-              onPress={() => navigation.navigate('AddRoom')}
-            />
+            <View style={{ flexDirection:"row" }}>
+              <IconButton
+                icon='card-account-details'
+                size={28}
+                color='#000000'
+                onPress={() => {}}
+              />
+              <IconButton
+                icon='account-group'
+                size={28}
+                color='#000000'
+                onPress={() => {}}
+              />
+              <IconButton
+                icon='message-plus'
+                size={28}
+                color='#000000'
+                onPress={() => navigation.navigate('AddRoom')}
+              />
+            </View>
           ),
           headerLeft: () => (
             <IconButton
               icon='logout-variant'
               size={28}
-              color='#ffffff'
+              color='#000000'
               onPress={() => logout()}
             />
           )
@@ -64,7 +78,7 @@ function ChatApp() {
 
 export default function HomeStack() {
   return (
-    <ModalStack.Navigator mode='modal'>
+    <ModalStack.Navigator screenOptions={{ presentation:"modal", headerShown:false }}>
       <ModalStack.Screen name='ChatApp' component={ChatApp} />
       <ModalStack.Screen name='AddRoom' component={AddRoomScreen} />
     </ModalStack.Navigator>
