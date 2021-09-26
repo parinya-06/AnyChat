@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "932264244103",
-    "project_id": "anychat-e644c",
-    "storage_bucket": "anychat-e644c.appspot.com"
+    "project_number": "790316352706",
+    "project_id": "anychat-2a6a8",
+    "storage_bucket": "anychat-2a6a8.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:932264244103:android:c544142e421d03af0d9922",
+        "mobilesdk_app_id": "1:790316352706:android:2d9850a2403c44e3a5e75b",
         "android_client_info": {
           "package_name": "com.anychat"
         }
       },
       "oauth_client": [
         {
-          "client_id": "932264244103-8otjfhk6m2dl25lra5b42uh4i19hlntm.apps.googleusercontent.com",
+          "client_id": "790316352706-bfuap1o3qk9srd228pqlil3a36i923us.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDQkUKOe-FWJZn629hGdmN9w0xeaG9mmWg"
+          "current_key": "AIzaSyCYekoKzrRuCJxg2BFCGHTikKwdokpdG6Q"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "932264244103-8otjfhk6m2dl25lra5b42uh4i19hlntm.apps.googleusercontent.com",
+              "client_id": "790316352706-bfuap1o3qk9srd228pqlil3a36i923us.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

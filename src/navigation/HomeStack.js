@@ -4,6 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { IconButton } from 'react-native-paper';
 import HomeScreen from '../screens/HomeScreen';
 import AddRoomScreen from '../screens/AddRoomScreen';
+import FriendsScreen from '../screens/FriendsScreen';
 import RoomScreen from '../screens/RoomScreen';
 import { AuthContext } from './AuthProvider';
 
@@ -45,7 +46,7 @@ function ChatApp() {
                 icon='account-group'
                 size={28}
                 color='#000000'
-                onPress={() => {}}
+                onPress={() => navigation.navigate('ChekFriends')}
               />
               <IconButton
                 icon='message-plus'
@@ -81,6 +82,7 @@ export default function HomeStack() {
     <ModalStack.Navigator screenOptions={{ presentation:"modal", headerShown:false }}>
       <ModalStack.Screen name='ChatApp' component={ChatApp} />
       <ModalStack.Screen name='AddRoom' component={AddRoomScreen} />
+      <ModalStack.Screen name='ChekFriends' component={FriendsScreen} />
     </ModalStack.Navigator>
   );
 }
