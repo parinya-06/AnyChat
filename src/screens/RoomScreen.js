@@ -3,6 +3,7 @@ import {
   GiftedChat,
   Bubble,
   Send,
+  Avatar,
   SystemMessage
 } from 'react-native-gifted-chat';
 import { ActivityIndicator, View, StyleSheet } from 'react-native';
@@ -136,6 +137,25 @@ export default function RoomScreen({ route }) {
       />
     );
   }
+  function addfriends(props) {
+    return (
+      <Avatar
+        {...props}
+        onLongPressAvatar={(avatarUser) => {
+          alert(avatarUser._id)
+          
+        }}
+      />
+
+    );
+  }
+  // function mapUser(user) {
+  //   return {
+  //     _id: user.id,
+  //     name: user.displayName,
+  //     avatar: user.displayPictureUrl,
+  //   };
+  // }
 
   return (
     <GiftedChat
@@ -145,6 +165,10 @@ export default function RoomScreen({ route }) {
       placeholder='Type your message here...'
       alwaysShowSend
       showUserAvatar
+      // user={mapUser(user)}
+      onLongPressAvatar={addfriends}
+      renderAvatar={addfriends}
+      // onLongPressAvatar={() => Alert.alert("12345")}
       scrollToBottom
       renderBubble={renderBubble}
       renderLoading={renderLoading}
@@ -154,6 +178,7 @@ export default function RoomScreen({ route }) {
     />
   );
 }
+
 
 const styles = StyleSheet.create({
   loadingContainer: {
