@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Text, Button } from 'react-native';
 import { IconButton, Title } from 'react-native-paper';
 import firestore from '@react-native-firebase/firestore';
 import FormInput from '../components/FormInput';
 import FormButton from '../components/FormButton';
 import useStatsBar from '../utils/useStatusBar';
+import Navbar from "../components/NavBar";
 
 export default function AddRoomScreen({ navigation }) {
   useStatsBar('dark-content');
@@ -46,19 +47,15 @@ export default function AddRoomScreen({ navigation }) {
       </View>
       <View style={styles.innerContainer}>
         <Title style={styles.title}>Friends</Title>
-        {/* <FormInput
-          labelName='Room Name'
-          value={roomName}
-          onChangeText={text => setRoomName(text)}
-          clearButtonMode='while-editing'
-        />
-        <FormButton
-          title='Create'
-          modeValue='contained'
-          labelStyle={styles.buttonLabel}
-          onPress={() => handleButtonPress()}
-          disabled={roomName.length === 0}
-        /> */}
+        <View style={{ flex: 1, flexDirection: "column" }}>
+          <Navbar title={"Friends"} />
+          <View style={{ paddingTop: 20 }}>
+            {/* <Button title={"Richie"} onPress={() => this._chat("Richie", "admin")} /> */}
+            <Button title={'avatarUser._id'} />
+
+          </View>
+        </View>
+
       </View>
     </View>
   );

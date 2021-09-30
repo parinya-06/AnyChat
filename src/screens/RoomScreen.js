@@ -6,11 +6,14 @@ import {
   Avatar,
   SystemMessage
 } from 'react-native-gifted-chat';
-import { ActivityIndicator, View, StyleSheet } from 'react-native';
+import { FlatList, TouchableOpacity, ActivityIndicator, View, StyleSheet } from 'react-native';
 import { IconButton } from 'react-native-paper';
 import { AuthContext } from '../navigation/AuthProvider';
 import firestore from '@react-native-firebase/firestore';
 import useStatsBar from '../utils/useStatusBar';
+import { useIsFocused } from '@react-navigation/native';
+import { Button, Dialog, Divider, List, Portal } from 'react-native-paper';
+
 
 export default function RoomScreen({ route }) {
   useStatsBar('light-content');
@@ -142,13 +145,16 @@ export default function RoomScreen({ route }) {
       <Avatar
         {...props}
         onLongPressAvatar={(avatarUser) => {
-          alert(avatarUser._id)
           
-        }}
+          alert(avatarUser._id)
+
+        }
+        }
       />
 
     );
   }
+  
   // function mapUser(user) {
   //   return {
   //     _id: user.id,
