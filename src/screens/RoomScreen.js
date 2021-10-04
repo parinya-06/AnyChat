@@ -6,22 +6,21 @@ import {
   Avatar,
   SystemMessage
 } from 'react-native-gifted-chat';
-import { FlatList, TouchableOpacity, ActivityIndicator, View, StyleSheet } from 'react-native';
-import { IconButton } from 'react-native-paper';
+import { FlatList, ActivityIndicator, View, StyleSheet } from 'react-native';
+import { IconButton,Button, Dialog, Divider, List, Portal } from 'react-native-paper';
 import { AuthContext } from '../navigation/AuthProvider';
 import firestore from '@react-native-firebase/firestore';
 import useStatsBar from '../utils/useStatusBar';
-import { useIsFocused } from '@react-navigation/native';
-import { Button, Dialog, Divider, List, Portal } from 'react-native-paper';
+// import { useIsFocused } from '@react-navigation/native';
 
-
-export default function RoomScreen({ route }) {
+export default function RoomScreen({ route, navigation }) {
   useStatsBar('light-content');
 
   const [messages, setMessages] = useState([]);
   const { thread } = route.params;
   const { user } = useContext(AuthContext);
   const currentUser = user.toJSON();
+  
 
   async function handleSend(messages) {
     const text = messages[0].text;
@@ -144,17 +143,22 @@ export default function RoomScreen({ route }) {
     return (
       <Avatar
         {...props}
-        onLongPressAvatar={(avatarUser) => {
-          
-          alert(avatarUser._id)
+        onLongPressAvatar={(avatarUser) => navigation.navigate('ChekFriends', { _id: avatarUser._id })}
+      
+        // onLongPressAvatar={(avatarUser) => {
+      //   // alert(avatarUser.email)
+      //   // alert(avatarUser._id)
+      //   // navigation.navigate('Room', { avatarUser._id })
 
-        }
-        }
+      //   navigation.navigate('AddScreen', { id: avatarUser._id });
+
+      // }}
       />
 
     );
   }
   
+
   // function mapUser(user) {
   //   return {
   //     _id: user.id,
@@ -164,6 +168,7 @@ export default function RoomScreen({ route }) {
   // }
 
   return (
+    
     <GiftedChat
       messages={messages}
       onSend={handleSend}
@@ -172,7 +177,7 @@ export default function RoomScreen({ route }) {
       alwaysShowSend
       showUserAvatar
       // user={mapUser(user)}
-      onLongPressAvatar={addfriends}
+      // onLongPressAvatar={addfriends}
       renderAvatar={addfriends}
       // onLongPressAvatar={() => Alert.alert("12345")}
       scrollToBottom
@@ -181,7 +186,10 @@ export default function RoomScreen({ route }) {
       renderSend={renderSend}
       scrollToBottomComponent={scrollToBottomComponent}
       renderSystemMessage={renderSystemMessage}
+      
+    
     />
+    
   );
 }
 

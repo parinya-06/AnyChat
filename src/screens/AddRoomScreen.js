@@ -13,6 +13,7 @@ export default function AddRoomScreen({ navigation }) {
   /**
    * Create a new Firestore collection to save threads
    */
+  
   function handleButtonPress() {
     if (roomName.length > 0) {
       firestore()
