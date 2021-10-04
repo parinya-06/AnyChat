@@ -5,6 +5,7 @@ import { IconButton } from 'react-native-paper';
 import HomeScreen from '../screens/HomeScreen';
 import AddRoomScreen from '../screens/AddRoomScreen';
 import FriendsScreen from '../screens/FriendsScreen';
+import AddFriendScreen from '../screens/AddFriendScreen';
 import RoomScreen from '../screens/RoomScreen';
 import { AuthContext } from './AuthProvider';
 
@@ -83,6 +84,7 @@ export default function HomeStack() {
       <ModalStack.Screen name='ChatApp' component={ChatApp} />
       <ModalStack.Screen name='AddRoom' component={AddRoomScreen} />
       <ModalStack.Screen name='ChekFriends' component={FriendsScreen} />
+      <ModalStack.Screen name='AddFriend' component={AddFriendScreen} />
     </ModalStack.Navigator>
   );
 }

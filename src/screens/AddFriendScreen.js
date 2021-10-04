@@ -14,7 +14,7 @@ import FormButton from '../components/FormButton';
 import useStatsBar from '../utils/useStatusBar';
 import Navbar from "../components/NavBar";
 
-export default function FriendsScreen({ navigation }) {
+export default function AddFriendScreen({ navigation }) {
   useStatsBar('dark-content');
   const [roomName, setRoomName] = useState('');
 
@@ -53,13 +53,14 @@ export default function FriendsScreen({ navigation }) {
         />
       </View>
       <View style={styles.innerContainer}>
-        <Title style={styles.title}>Friends</Title>
+        <Title style={styles.title}>Add Friend</Title>
         <View style={{ flex: 1, flexDirection: "column" }}>
-          <Navbar title={"Friends"} />
+          <Navbar title={"Add Friend"} />
           <View style={{ paddingTop: 20 }}>
             {/* <Button title={"Richie"} onPress={() => this._chat("Richie", "admin")} /> */}
-            <Button title={'_id'} />
+            <Button style={styles.b1} title={'ADD'} />
 
+            <Button title={'Cancel'} onPress={() => navigation.goBack()}/>
           </View>
         </View>
 
@@ -71,6 +72,11 @@ export default function FriendsScreen({ navigation }) {
 const styles = StyleSheet.create({
   rootContainer: {
     flex: 1
+  },
+  b1:{
+    backgroundColor: '#6646ee',
+    borderRadius: 4,
+    padding: 5
   },
   closeButtonContainer: {
     position: 'absolute',
@@ -89,5 +95,6 @@ const styles = StyleSheet.create({
   },
   buttonLabel: {
     fontSize: 22
-  }
+  },
+  
 });

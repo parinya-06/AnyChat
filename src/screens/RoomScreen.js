@@ -143,7 +143,7 @@ export default function RoomScreen({ route, navigation }) {
     return (
       <Avatar
         {...props}
-        onLongPressAvatar={(avatarUser) => navigation.navigate('ChekFriends', { _id: avatarUser._id })}
+        onLongPressAvatar={(avatarUser) => navigation.navigate('AddFriend', { _id: avatarUser._id })}
       
         // onLongPressAvatar={(avatarUser) => {
       //   // alert(avatarUser.email)
