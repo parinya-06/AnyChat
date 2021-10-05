@@ -21,7 +21,7 @@ export default function AddFriendScreen({ navigation }) {
   /**
    * Create a new Firestore collection to save threads
    */
-  function showFriends() {
+  function add() {
     if (roomName.length > 0) {
       firestore()
         .collection('THREADS')

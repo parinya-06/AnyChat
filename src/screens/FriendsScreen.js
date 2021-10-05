@@ -58,7 +58,11 @@ export default function FriendsScreen({ navigation }) {
           <Navbar title={"Friends"} />
           <View style={{ paddingTop: 20 }}>
             {/* <Button title={"Richie"} onPress={() => this._chat("Richie", "admin")} /> */}
-            <Button title={'_id'} />
+            <Button marginBottom='60' title={'email: k1234@gmail.com uuid: WTzhgMQUn3O7pDj8V5Nzis3FOy43'} />
+            <Button title={'email: test@gmail.com uuid: 7z1Zo4fLIvVlIeF8KI4T5sZMOwM2'} />
+            <Button title={'email: jame@gmail.com uuid: mYpVzhDRLzXDeaaCLCZxAKqaiM13'} />
+            <Button title={'email: satawat@gmail.com uuid: IkbzpF1t3QhI4xKivoKZ4gfwPL73'} />
+
 
           </View>
         </View>
