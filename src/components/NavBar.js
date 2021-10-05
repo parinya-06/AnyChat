@@ -12,11 +12,11 @@ class NavBarChat extends Component {
 
   render() {
     return (
-      <NavBar>
+      <NavBar >
         <NavButton />
         <NavTitle>💬 {this.props.title}</NavTitle>
         <NavButton />
-        <NavButton onPress={this.props.action}>
+        <NavButton  onPress={this.props.action}>
           <NavButtonText>
             {this.props.button}
           </NavButtonText>

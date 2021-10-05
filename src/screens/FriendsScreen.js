@@ -85,7 +85,8 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 24,
-    marginBottom: 10
+    // marginBottom: 10
+    marginTop: 60
   },
   buttonLabel: {
     fontSize: 22

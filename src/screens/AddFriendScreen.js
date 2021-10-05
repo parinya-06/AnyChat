@@ -58,9 +58,10 @@ export default function AddFriendScreen({ navigation }) {
           <Navbar title={"Add Friend"} />
           <View style={{ paddingTop: 20 }}>
             {/* <Button title={"Richie"} onPress={() => this._chat("Richie", "admin")} /> */}
-            <Button style={styles.b1} title={'ADD'} />
-
-            <Button title={'Cancel'} onPress={() => navigation.goBack()}/>
+            <Button color="#2ECC71" title={'ADD'} />
+          </View>
+          <View style={{ paddingTop: 20 }}>
+            <Button color="#DC7633" title={'Cancel'} onPress={() => navigation.goBack()} />
           </View>
         </View>
 
@@ -73,7 +74,7 @@ const styles = StyleSheet.create({
   rootContainer: {
     flex: 1
   },
-  b1:{
+  b1: {
     backgroundColor: '#6646ee',
     borderRadius: 4,
     padding: 5
@@ -91,10 +92,11 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 24,
-    marginBottom: 10
+    // marginBottom: 10
+    marginTop: 60
   },
   buttonLabel: {
     fontSize: 22
   },
-  
+
 });
