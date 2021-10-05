@@ -22,25 +22,7 @@ export default function AddFriendScreen({ navigation }) {
    * Create a new Firestore collection to save threads
    */
   function add() {
-    if (roomName.length > 0) {
-      firestore()
-        .collection('THREADS')
-        .add({
-          name: roomName,
-          latestMessage: {
-            text: `You have joined the room ${roomName}.`,
-            createdAt: new Date().getTime()
-          }
-        })
-        .then(docRef => {
-          docRef.collection('MESSAGES').add({
-            text: `You have joined the room ${roomName}.`,
-            createdAt: new Date().getTime(),
-            system: true
-          });
-          navigation.navigate('Home');
-        });
-    }
+    
   }
   return (
     <View style={styles.rootContainer}>
