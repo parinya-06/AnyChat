@@ -97,6 +97,7 @@ export default function HomeScreen({ navigation }) {
           <Dialog.Title>Delete?</Dialog.Title>
           <Dialog.Actions>
             <Button onPress={handleDismissLeaveChannel}>Cancel</Button>
+            <Button onPress={handleDismissLeaveChannel}>Edit</Button>
             <Button onPress={handleLeaveChannel}>Confirm</Button>
           </Dialog.Actions>
         </Dialog>

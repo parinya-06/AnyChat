@@ -21,6 +21,7 @@ export default function AddFriendScreen({ navigation }) {
   /**
    * Create a new Firestore collection to save threads
    */
+  
   function add() {
     
   }
@@ -40,7 +41,7 @@ export default function AddFriendScreen({ navigation }) {
           <Navbar title={"Add Friend"} />
           <View style={{ paddingTop: 20 }}>
             {/* <Button title={"Richie"} onPress={() => this._chat("Richie", "admin")} /> */}
-            <Button color="#2ECC71" title={'ADD'} />
+            <Button color="#2ECC71" title={'ADD'} onPress={(avatarUser) => alert(avatarUser._id)} />
           </View>
           <View style={{ paddingTop: 20 }}>
             <Button color="#DC7633" title={'Cancel'} onPress={() => navigation.goBack()} />
