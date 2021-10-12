@@ -19,6 +19,7 @@ export default function FriendsScreen({ navigation }) {
   useStatsBar('dark-content');
   const [roomName, setRoomName] = useState('');
 
+
   /**
    * Create a new Firestore collection to save threads
    */

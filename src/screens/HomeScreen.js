@@ -53,10 +53,13 @@ export default function HomeScreen({ navigation }) {
   if (loading) {
     return <Loading />;
   }
-
+  
   // LeaveChannel
   function handleLeaveChannel() {
     
+  }
+  function handleChannel() {
+
   }
 
   function handleDismissLeaveChannel() {
@@ -97,7 +100,7 @@ export default function HomeScreen({ navigation }) {
           <Dialog.Title>Delete?</Dialog.Title>
           <Dialog.Actions>
             <Button onPress={handleDismissLeaveChannel}>Cancel</Button>
-            <Button onPress={handleDismissLeaveChannel}>Edit</Button>
+            <Button onPress={handleChannel}>Edit</Button>
             <Button onPress={handleLeaveChannel}>Confirm</Button>
           </Dialog.Actions>
         </Dialog>

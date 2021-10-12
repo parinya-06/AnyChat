@@ -14,16 +14,29 @@ import FormButton from '../components/FormButton';
 import useStatsBar from '../utils/useStatusBar';
 import Navbar from "../components/NavBar";
 
-export default function AddFriendScreen({ navigation }) {
+export default function AddFriendScreen({ route, navigation }) {
   useStatsBar('dark-content');
-  const [roomName, setRoomName] = useState('');
+
 
   /**
    * Create a new Firestore collection to save threads
    */
-  
+  const { _id } = route.params;
   function add() {
-    
+
+    firestore()
+      .collection('CHAT_USER')
+      .doc(_id)
+      .get()
+      .then(snapshot => {
+        snapshot.forEach(doc => {
+          const data = doc.data();
+          console.log(doc.id, data);
+        });
+      })
+      .catch(err => {
+        console.log('Error getting documents', err);
+      });
   }
   return (
     <View style={styles.rootContainer}>
@@ -41,7 +54,7 @@ export default function AddFriendScreen({ navigation }) {
           <Navbar title={"Add Friend"} />
           <View style={{ paddingTop: 20 }}>
             {/* <Button title={"Richie"} onPress={() => this._chat("Richie", "admin")} /> */}
-            <Button color="#2ECC71" title={'ADD'} onPress={(avatarUser) => alert(avatarUser._id)} />
+            <Button color="#2ECC71" title={'ADD'} onPress={add} />
           </View>
           <View style={{ paddingTop: 20 }}>
             <Button color="#DC7633" title={'Cancel'} onPress={() => navigation.goBack()} />
