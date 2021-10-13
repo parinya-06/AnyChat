@@ -24,7 +24,7 @@ export default function FriendsScreen({ navigation }) {
    * Create a new Firestore collection to save threads
    */
   function showFriends() {
-    
+
   }
 
   return (
@@ -43,16 +43,20 @@ export default function FriendsScreen({ navigation }) {
           <Navbar title={"Friends"} />
           <View style={{ paddingTop: 20 }}>
             {/* <Button title={"Richie"} onPress={() => this._chat("Richie", "admin")} /> */}
-            <Button title={'email: k1234@gmail.com uuid: WTzhgMQUn3O7pDj8V5Nzis3FOy43'} />
+            {/* email: k1234@gmail.com  */}
+            <Button title={'uuid: WTzhgMQUn3O7pDj8V5Nzis3FOy43'} />
           </View>
           <View style={{ paddingTop: 5 }}>
-            <Button title={'email: test@gmail.com uuid: 7z1Zo4fLIvVlIeF8KI4T5sZMOwM2'} />
+            {/* email: test@gmail.com  */}
+            <Button title={'uuid: 7z1Zo4fLIvVlIeF8KI4T5sZMOwM2'} />
           </View>
           <View style={{ paddingTop: 5 }}>
-            <Button title={'email: jame@gmail.com uuid: mYpVzhDRLzXDeaaCLCZxAKqaiM13'} />
+            {/* email: jame@gmail.com  */}
+            <Button title={'uuid: mYpVzhDRLzXDeaaCLCZxAKqaiM13'} />
           </View>
           <View style={{ paddingTop: 5 }}>
-            <Button title={'email: satawat@gmail.com uuid: IkbzpF1t3QhI4xKivoKZ4gfwPL73'} />
+            {/* email: satawat@gmail.com */}
+            <Button title={'uuid: IkbzpF1t3QhI4xKivoKZ4gfwPL73'} />
 
 
           </View>

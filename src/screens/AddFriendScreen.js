@@ -37,6 +37,7 @@ export default function AddFriendScreen({ route, navigation }) {
       .catch(err => {
         console.log('Error getting documents', err);
       });
+    alert(_id)
   }
   return (
     <View style={styles.rootContainer}>
@@ -54,6 +55,7 @@ export default function AddFriendScreen({ route, navigation }) {
           <Navbar title={"Add Friend"} />
           <View style={{ paddingTop: 20 }}>
             {/* <Button title={"Richie"} onPress={() => this._chat("Richie", "admin")} /> */}
+            {/* <Button color="#2ECC71" title={'ADD'} onPress={add} /> */}
             <Button color="#2ECC71" title={'ADD'} onPress={add} />
           </View>
           <View style={{ paddingTop: 20 }}>
