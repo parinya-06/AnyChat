@@ -143,16 +143,21 @@ export default function RoomScreen({ route, navigation }) {
     return (
       <Avatar
         {...props}
-        onLongPressAvatar={(avatarUser) => navigation.navigate('AddFriend',{ email: avatarUser.email,_id:avatarUser._id })}
+        onLongPressAvatar={(avatarUser) =>
+          navigation.navigate('AddFriend', {
+            email: avatarUser.email,
+            _id: avatarUser._id,
+            pid: currentUser.uid
+          })}
 
-        // onLongPressAvatar={(avatarUser) => {
-        //   alert(avatarUser.email)
-        //   //   // alert(avatarUser._id)
-        //   //   // navigation.navigate('Room', { avatarUser._id })
+      // onLongPressAvatar={(avatarUser) => {
+      //   alert(avatarUser.email)
+      //   //   // alert(avatarUser._id)
+      //   //   // navigation.navigate('Room', { avatarUser._id })
 
-        //   //   navigation.navigate('AddScreen', { id: avatarUser._id });
+      //   //   navigation.navigate('AddScreen', { id: avatarUser._id });
 
-        // }}
+      // }}
       />
 
     );

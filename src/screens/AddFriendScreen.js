@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useContext } from 'react';
 import {
   GiftedChat,
   Bubble,
@@ -9,6 +9,7 @@ import {
 import { View, StyleSheet, Text, Button } from 'react-native';
 import { IconButton, Title } from 'react-native-paper';
 import firestore from '@react-native-firebase/firestore';
+import { AuthContext } from '../navigation/AuthProvider';
 import FormInput from '../components/FormInput';
 import FormButton from '../components/FormButton';
 import useStatsBar from '../utils/useStatusBar';
@@ -17,48 +18,54 @@ import Navbar from "../components/NavBar";
 export default function AddFriendScreen({ route, navigation }) {
   useStatsBar('dark-content');
 
-
   /**
    * Create a new Firestore collection to save threads
    */
+
   const { _id } = route.params;
+  const { pid } = route.params;
   const { email } = route.params;
+  const { users } = useContext(AuthContext);
+  // const users = firestore().collection('Friends');
+  // const adduser  = () => {
+  //   users.add({
+  //     ID: _id,
+  //     email: email
+  //   });
+  // };
+
   function add() {
 
     firestore()
-      .collection('CHAT_USER')
-      .doc(email)
-      // .doc(_id)
-      .get()
-      .then(snapshot => {
-        snapshot.forEach(doc => {
-          const data = doc.data();
-          console.log(doc.email, data);
-        });
-      })
-      .catch(err => {
-        console.log('Error getting documents', err);
+      .collection('Friend')
+      .doc(pid)
+      .collection('Friends')
+      .add({
+        users: {
+          _id: _id,
+          email: email
+        }
       });
+    // alert(pid)
+    // // alert(_id)
+    // alert(email)
+
+    // firestore()
+    //   .collection('CHAT_USER')
+    //   .doc(_id)
+    //   .get()
+    //   .then(snapshot => {
+    //     snapshot.forEach(doc => {
+    //       const data = doc.data();
+    //       console.log(doc.id, data);
+    //     });
+    //   })
+    //   .catch(err => {
+    //     console.log('Error getting documents', err);
+    //   });
     // alert(_id)
-    alert(email)
-
-    firestore()
-      .collection('CHAT_USER')
-      .doc(_id)
-      .get()
-      .then(snapshot => {
-        snapshot.forEach(doc => {
-          const data = doc.data();
-          console.log(doc.id, data);
-        });
-      })
-      .catch(err => {
-        console.log('Error getting documents', err);
-      });
-    alert(_id)
-    
-
   }
+
   return (
     <View style={styles.rootContainer}>
       <View style={styles.closeButtonContainer}>
