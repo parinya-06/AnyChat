@@ -53,7 +53,7 @@ export default function HomeScreen({ navigation }) {
   if (loading) {
     return <Loading />;
   }
-  
+
   // LeaveChannel
   function handleLeaveChannel() {
     

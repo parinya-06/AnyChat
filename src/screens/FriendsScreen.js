@@ -19,7 +19,19 @@ export default function FriendsScreen({ navigation }) {
   useStatsBar('dark-content');
   const [roomName, setRoomName] = useState('');
 
+  function User({ uuid }) {
+    useEffect(() => {
+      const subscriber = firestore()
+        .collection('CHAT_USER')
+        .doc(uuid)
+        .onSnapshot(documentSnapshot => {
+          console.log('User data: ', documentSnapshot.data());
+        });
 
+      // Stop listening for updates when no longer required
+      return () => subscriber();
+    }, [uuid]);
+  }
   /**
    * Create a new Firestore collection to save threads
    */

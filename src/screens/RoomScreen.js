@@ -7,7 +7,7 @@ import {
   SystemMessage
 } from 'react-native-gifted-chat';
 import { FlatList, ActivityIndicator, View, StyleSheet } from 'react-native';
-import { IconButton,Button, Dialog, Divider, List, Portal } from 'react-native-paper';
+import { IconButton, Button, Dialog, Divider, List, Portal } from 'react-native-paper';
 import { AuthContext } from '../navigation/AuthProvider';
 import firestore from '@react-native-firebase/firestore';
 import useStatsBar from '../utils/useStatusBar';
@@ -20,7 +20,7 @@ export default function RoomScreen({ route, navigation }) {
   const { thread } = route.params;
   const { user } = useContext(AuthContext);
   const currentUser = user.toJSON();
-  
+
 
   async function handleSend(messages) {
     const text = messages[0].text;
@@ -143,21 +143,21 @@ export default function RoomScreen({ route, navigation }) {
     return (
       <Avatar
         {...props}
-        onLongPressAvatar={(avatarUser) => navigation.navigate('AddFriend', { _id: avatarUser._id })}
-      
+        onLongPressAvatar={(avatarUser) => navigation.navigate('AddFriend',{ email: avatarUser.email,_id:avatarUser._id })}
+
         // onLongPressAvatar={(avatarUser) => {
-      //   // alert(avatarUser.email)
-      //   // alert(avatarUser._id)
-      //   // navigation.navigate('Room', { avatarUser._id })
+        //   alert(avatarUser.email)
+        //   //   // alert(avatarUser._id)
+        //   //   // navigation.navigate('Room', { avatarUser._id })
 
-      //   navigation.navigate('AddScreen', { id: avatarUser._id });
+        //   //   navigation.navigate('AddScreen', { id: avatarUser._id });
 
-      // }}
+        // }}
       />
 
     );
   }
-  
+
 
   // function mapUser(user) {
   //   return {
@@ -168,7 +168,7 @@ export default function RoomScreen({ route, navigation }) {
   // }
 
   return (
-    
+
     <GiftedChat
       messages={messages}
       onSend={handleSend}
@@ -186,10 +186,10 @@ export default function RoomScreen({ route, navigation }) {
       renderSend={renderSend}
       scrollToBottomComponent={scrollToBottomComponent}
       renderSystemMessage={renderSystemMessage}
-      
-    
+
+
     />
-    
+
   );
 }
 

@@ -22,7 +22,25 @@ export default function AddFriendScreen({ route, navigation }) {
    * Create a new Firestore collection to save threads
    */
   const { _id } = route.params;
+  const { email } = route.params;
   function add() {
+
+    firestore()
+      .collection('CHAT_USER')
+      .doc(email)
+      // .doc(_id)
+      .get()
+      .then(snapshot => {
+        snapshot.forEach(doc => {
+          const data = doc.data();
+          console.log(doc.email, data);
+        });
+      })
+      .catch(err => {
+        console.log('Error getting documents', err);
+      });
+    // alert(_id)
+    alert(email)
 
     firestore()
       .collection('CHAT_USER')
@@ -38,6 +56,8 @@ export default function AddFriendScreen({ route, navigation }) {
         console.log('Error getting documents', err);
       });
     alert(_id)
+    
+
   }
   return (
     <View style={styles.rootContainer}>
