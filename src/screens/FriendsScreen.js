@@ -44,7 +44,7 @@ export default function FriendsScreen({ navigation }) {
             _id: documentSnapshot.id,
             // give defaults
             email: '',
-
+            uuid: '',
             _id: '',
             ...documentSnapshot.data()
           };
@@ -72,7 +72,7 @@ export default function FriendsScreen({ navigation }) {
         <IconButton
           icon='close-circle'
           size={36}
-          color='#6646ee'
+          color='#000000'
           onPress={() => navigation.goBack()}
         />
       </View>
@@ -83,19 +83,13 @@ export default function FriendsScreen({ navigation }) {
       <View style={styles.container}>
         <FlatList
           data={threads}
-          // keyExtractor={item => item._id}
-          // ItemSeparatorComponent={() => <Divider />}
           renderItem={({ item }) => (
             <TouchableOpacity
               onLongPress={() => Alert.alert("MyFriend")}
             >
               <List.Item
                 title={item.email}
-                description={item._id}
-              // titleNumberOfLines={1}
-              // titleStyle={styles.listTitle}
-              // descriptionStyle={styles.listDescription}
-              // descriptionNumberOfLines={1}
+                description={item.uuid}
               />
             </TouchableOpacity>
           )}
@@ -115,14 +109,16 @@ const styles = StyleSheet.create({
     right: 0,
     zIndex: 1
   },
-  container:{
-    margin:20,
-    padding:0
+  container: {
+    margin: 0,
+    padding: 0,
+    backgroundColor:444444
   },
   innerContainer: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    backgroundColor:'#ff5722'
   },
   title: {
     fontSize: 24,

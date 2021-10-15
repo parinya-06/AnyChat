@@ -82,6 +82,9 @@ export default function AddFriendScreen({ route, navigation }) {
         <View style={{ flex: 1, flexDirection: "column" }}>
           <Navbar title={"Add Friend"} />
           <View style={{ paddingTop: 20 }}>
+            <Button color="#333333" title={email}/>
+          </View>
+          <View style={{ paddingTop: 20 }}>
             {/* <Button title={"Richie"} onPress={() => this._chat("Richie", "admin")} /> */}
             {/* <Button color="#2ECC71" title={'ADD'} onPress={add} /> */}
             <Button color="#2ECC71" title={'ADD'} onPress={add} />
