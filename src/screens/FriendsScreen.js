@@ -31,7 +31,7 @@ export default function FriendsScreen({ navigation }) {
             // give defaults
             email: '',
             // uuid: '',
-            _id: '',
+            ID: '',
             ...documentSnapshot.data()
           
           };
@@ -88,7 +88,7 @@ export default function FriendsScreen({ navigation }) {
               <List.Item
                 title={item.email}
                 // description={item.uuid}
-                description={item._id}
+                description={item.ID}
               />
             </TouchableOpacity>
           )}
