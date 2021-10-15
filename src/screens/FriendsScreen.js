@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { View, StyleSheet, Text, FlatList, TouchableOpacity, Alert } from 'react-native';
 import { IconButton, Title, Button, Dialog, Divider, List, Portal } from 'react-native-paper';
 import firestore from '@react-native-firebase/firestore';
@@ -6,50 +6,37 @@ import FormInput from '../components/FormInput';
 import FormButton from '../components/FormButton';
 import useStatsBar from '../utils/useStatusBar';
 import Loading from '../components/Loading';
+import { AuthContext } from '../navigation/AuthProvider';
 
 export default function FriendsScreen({ navigation }) {
   useStatsBar('dark-content');
+  const [roomName, setRoomName] = useState('');
 
-  // firestore()
-  //   .collection('Friend')
-  //   .doc('nUEKK9XBU5ad9EjWNjia61y8d8g2')
-  //   .collection('Friends')
-  //   .doc('W6CDh7sWx8iUwPZNjAKL')
-  //   .get()
-  //   .then(snapshot => {
-  //     snapshot.forEach(doc => {
-  //       const data = doc.data();
-  //       console.log(doc.id, data);
-  //     });
-  //   })
-  //   .catch(err => {
-  //     console.log('Error getting documents', err);
-  //   });
-
+  const { user } =useContext(AuthContext);
+  const currentUser = user.toJSON();
   const [threads, setThreads] = useState([]);
   const [loading, setLoading] = useState(true);
   /**
    * Fetch threads from Firestore
    */
-  useEffect(() => {
+   useEffect(() => {
     const unsubscribe = firestore()
-      // .collection('THREADS')
-      .collection('CHAT_USER')
-      // .collection('Friend')
-      // .doc('nUEKK9XBU5ad9EjWNjia61y8d8g2')
-      // .collection('Friends')
+      .collection('FRIENDS')
+      .doc(currentUser.uid)
+      .collection('MYFRIENDS')
       .onSnapshot(querySnapshot => {
         const threads = querySnapshot.docs.map(documentSnapshot => {
           return {
             _id: documentSnapshot.id,
             // give defaults
             email: '',
-            uuid: '',
+            // uuid: '',
             _id: '',
             ...documentSnapshot.data()
+          
           };
         });
-
+       
         setThreads(threads);
 
         if (loading) {
@@ -66,6 +53,7 @@ export default function FriendsScreen({ navigation }) {
   if (loading) {
     return <Loading />;
   }
+  
   return (
     <View style={styles.rootContainer}>
       <View style={styles.closeButtonContainer}>
@@ -76,10 +64,20 @@ export default function FriendsScreen({ navigation }) {
           onPress={() => navigation.goBack()}
         />
       </View>
+      {/* <View style={styles.innerContainer}>
+        <Title style={styles.title}>Friends</Title>
+        <View style={{ flex: 1, flexDirection: "column" }}>
+          <Navbar title={"Friends"} />
+          <View style={{ paddingTop: 20 }}>
+          <Button color="#2ECC71" title={pid} />
+          </View>
+        </View>
+      </View> */}
       <View style={styles.innerContainer}>
         <Title style={styles.title}>My Friends</Title>
         {/* <Text style={{ fontSize: 20 }} >{ }</Text> */}
       </View>
+
       <View style={styles.container}>
         <FlatList
           data={threads}
@@ -89,12 +87,14 @@ export default function FriendsScreen({ navigation }) {
             >
               <List.Item
                 title={item.email}
-                description={item.uuid}
+                // description={item.uuid}
+                description={item._id}
               />
             </TouchableOpacity>
           )}
         />
       </View>
+
     </View>
   );
 }
@@ -109,20 +109,16 @@ const styles = StyleSheet.create({
     right: 0,
     zIndex: 1
   },
-  container: {
-    margin: 0,
-    padding: 0,
-    backgroundColor:444444
-  },
   innerContainer: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor:'#ff5722'
+    backgroundColor: '#ff5722'
   },
   title: {
     fontSize: 24,
-    marginBottom: 0
+    // marginBottom: 10
+    marginTop: 60
   },
   buttonLabel: {
     fontSize: 22
