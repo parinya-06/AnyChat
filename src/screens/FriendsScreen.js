@@ -1,44 +1,71 @@
-import React, { useState } from 'react';
-import {
-  GiftedChat,
-  Bubble,
-  Send,
-  Avatar,
-  SystemMessage
-} from 'react-native-gifted-chat';
-import { View, StyleSheet, Text, Button } from 'react-native';
-import { IconButton, Title } from 'react-native-paper';
+import React, { useState, useEffect } from 'react';
+import { View, StyleSheet, Text, FlatList, TouchableOpacity, Alert } from 'react-native';
+import { IconButton, Title, Button, Dialog, Divider, List, Portal } from 'react-native-paper';
 import firestore from '@react-native-firebase/firestore';
 import FormInput from '../components/FormInput';
 import FormButton from '../components/FormButton';
 import useStatsBar from '../utils/useStatusBar';
-import Navbar from "../components/NavBar";
-import { firebase } from '@react-native-firebase/auth';
+import Loading from '../components/Loading';
 
 export default function FriendsScreen({ navigation }) {
   useStatsBar('dark-content');
-  const [roomName, setRoomName] = useState('');
 
-  function User({ uuid }) {
-    useEffect(() => {
-      const subscriber = firestore()
-        .collection('CHAT_USER')
-        .doc(uuid)
-        .onSnapshot(documentSnapshot => {
-          console.log('User data: ', documentSnapshot.data());
+  // firestore()
+  //   .collection('Friend')
+  //   .doc('nUEKK9XBU5ad9EjWNjia61y8d8g2')
+  //   .collection('Friends')
+  //   .doc('W6CDh7sWx8iUwPZNjAKL')
+  //   .get()
+  //   .then(snapshot => {
+  //     snapshot.forEach(doc => {
+  //       const data = doc.data();
+  //       console.log(doc.id, data);
+  //     });
+  //   })
+  //   .catch(err => {
+  //     console.log('Error getting documents', err);
+  //   });
+
+  const [threads, setThreads] = useState([]);
+  const [loading, setLoading] = useState(true);
+  /**
+   * Fetch threads from Firestore
+   */
+  useEffect(() => {
+    const unsubscribe = firestore()
+      // .collection('THREADS')
+      .collection('CHAT_USER')
+      // .collection('Friend')
+      // .doc('nUEKK9XBU5ad9EjWNjia61y8d8g2')
+      // .collection('Friends')
+      .onSnapshot(querySnapshot => {
+        const threads = querySnapshot.docs.map(documentSnapshot => {
+          return {
+            _id: documentSnapshot.id,
+            // give defaults
+            email: '',
+
+            _id: '',
+            ...documentSnapshot.data()
+          };
         });
 
-      // Stop listening for updates when no longer required
-      return () => subscriber();
-    }, [uuid]);
-  }
-  /**
-   * Create a new Firestore collection to save threads
-   */
-  function showFriends() {
+        setThreads(threads);
 
-  }
+        if (loading) {
+          setLoading(false);
+        }
+      });
 
+    /**
+     * unsubscribe listener
+     */
+    return () => unsubscribe();
+  }, []);
+
+  if (loading) {
+    return <Loading />;
+  }
   return (
     <View style={styles.rootContainer}>
       <View style={styles.closeButtonContainer}>
@@ -50,30 +77,29 @@ export default function FriendsScreen({ navigation }) {
         />
       </View>
       <View style={styles.innerContainer}>
-        <Title style={styles.title}>Friends</Title>
-        <View style={{ flex: 1, flexDirection: "column" }}>
-          <Navbar title={"Friends"} />
-          <View style={{ paddingTop: 20 }}>
-            {/* <Button title={"Richie"} onPress={() => this._chat("Richie", "admin")} /> */}
-            {/* email: k1234@gmail.com  */}
-            <Button title={'uuid: WTzhgMQUn3O7pDj8V5Nzis3FOy43'} />
-          </View>
-          <View style={{ paddingTop: 5 }}>
-            {/* email: test@gmail.com  */}
-            <Button title={'uuid: 7z1Zo4fLIvVlIeF8KI4T5sZMOwM2'} />
-          </View>
-          <View style={{ paddingTop: 5 }}>
-            {/* email: jame@gmail.com  */}
-            <Button title={'uuid: mYpVzhDRLzXDeaaCLCZxAKqaiM13'} />
-          </View>
-          <View style={{ paddingTop: 5 }}>
-            {/* email: satawat@gmail.com */}
-            <Button title={'uuid: IkbzpF1t3QhI4xKivoKZ4gfwPL73'} />
-
-
-          </View>
-        </View>
-
+        <Title style={styles.title}>My Friends</Title>
+        {/* <Text style={{ fontSize: 20 }} >{ }</Text> */}
+      </View>
+      <View style={styles.container}>
+        <FlatList
+          data={threads}
+          // keyExtractor={item => item._id}
+          // ItemSeparatorComponent={() => <Divider />}
+          renderItem={({ item }) => (
+            <TouchableOpacity
+              onLongPress={() => Alert.alert("MyFriend")}
+            >
+              <List.Item
+                title={item.email}
+                description={item._id}
+              // titleNumberOfLines={1}
+              // titleStyle={styles.listTitle}
+              // descriptionStyle={styles.listDescription}
+              // descriptionNumberOfLines={1}
+              />
+            </TouchableOpacity>
+          )}
+        />
       </View>
     </View>
   );
@@ -89,6 +115,10 @@ const styles = StyleSheet.create({
     right: 0,
     zIndex: 1
   },
+  container:{
+    margin:20,
+    padding:0
+  },
   innerContainer: {
     flex: 1,
     justifyContent: 'center',
@@ -96,8 +126,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 24,
-    // marginBottom: 10
-    marginTop: 60
+    marginBottom: 0
   },
   buttonLabel: {
     fontSize: 22

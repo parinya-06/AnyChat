@@ -18,6 +18,7 @@ const ModalStack = createStackNavigator();
 
 function ChatApp() {
   const { logout } = useContext(AuthContext);
+  
 
   return (
     <ChatAppStack.Navigator

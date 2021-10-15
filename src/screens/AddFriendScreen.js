@@ -1,4 +1,4 @@
-import React, { useState,useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import {
   GiftedChat,
   Bubble,
@@ -46,6 +46,7 @@ export default function AddFriendScreen({ route, navigation }) {
           email: email
         }
       });
+      navigation.navigate('ChekFriends',{pid:pid})
     // alert(pid)
     // // alert(_id)
     // alert(email)
